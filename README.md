@@ -1,1 +1,1 @@
-# SkillboxMaven
+# SkillboxMaven + git+ junit
