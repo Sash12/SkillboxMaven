@@ -19,6 +19,10 @@ public class CustomerStorage {
             storage.put(name, new Customer(name, components[INDEX_PHONE], components[INDEX_EMAIL]));
         } catch (InputMismatchException e) {
             System.out.println("Неправильный формат числа");
+        }catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("неверноe количестве компонентов в переданной строке с данными");
+        }catch (IllegalArgumentException){
+            System.out.println("неверный формат номера телефона и email");
         }catch (Exception e){
             System.out.println("Какая-то ошибка");
         }
