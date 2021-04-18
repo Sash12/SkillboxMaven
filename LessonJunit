@@ -1,0 +1,75 @@
+import core.Line;
+import core.Station;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+
+//Это я пытаюсь тестить:)
+
+class RouteCalculatorTest {
+    StationIndex st = new StationIndex();
+    List<Station> stations = new ArrayList<>();
+
+    @BeforeEach
+    public void calculateDuration1() {
+
+        Line line1 = new Line(1, "Red");
+        Line line2 = new Line(2, "Blue");
+        Line line3 = new Line(3, "Green");
+
+        st.addConnection(stations);
+
+        st.addLine(line1);
+        st.addLine(line2);
+        st.addLine(line3);
+
+        line1.addStation(new Station("Red1", line1));
+        line1.addStation(new Station("Red2", line1));
+        line1.addStation(new Station("Red3", line1));
+        line1.addStation(new Station("Red4", line1));
+
+        line2.addStation(new Station("Blue1", line2));
+        line2.addStation(new Station("Blue2", line2));
+        line2.addStation(new Station("Blue3", line2));
+
+        line3.addStation(new Station("Green1", line3));
+        line3.addStation(new Station("Green2", line3));
+        line3.addStation(new Station("Green3", line3));
+
+        st.addStation(new Station("Red1", line1));
+        st.addStation(new Station("Red2", line1));
+        st.addStation(new Station("Red3", line1));
+        st.addStation(new Station("Blue1", line2));
+        st.addStation(new Station("Blue2", line2));
+        st.addStation(new Station("Blue3", line2));
+        st.addStation(new Station("Green1", line3));
+        st.addStation(new Station("Green2", line3));
+        st.addStation(new Station("Green3", line3));
+
+        stations.add(st.getStation("Red1"));
+        stations.add(st.getStation("Red2"));
+        stations.add(st.getStation("Green1"));
+        stations.add(st.getStation("Green2"));
+        stations.add(st.getStation("Blue1"));
+        stations.add(st.getStation("Blue2"));
+
+    }
+
+    @Test
+    void calculateDuration() {
+        Double actual = RouteCalculator.calculateDuration(stations);
+        Double expected = 14.5;
+        assertEquals(actual, expected);
+    }
+
+//    @Test
+//    void getShortestRouteTest(){
+//        RouteCalculator route = new RouteCalculator(st.getStation("Red1"),st.getStation("Blue2"));
+ //   }
+
+}
